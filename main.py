@@ -1,7 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from faker import Faker
+
+faker = Faker()
 
 app = FastAPI()
+
+keys = ["phrase", "message", ""]
 
 app.add_middleware(
     CORSMiddleware,
@@ -14,4 +19,7 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    return {"phrase": "Why So Serious??"}
+    key = faker.word()
+    value = faker.text()
+    print(key, value)
+    return {"phrase": value}
