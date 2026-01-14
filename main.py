@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from faker import Faker
 
+import random
+
 app = FastAPI()
 faker = Faker()
 
@@ -16,5 +18,7 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    value = faker.text()
-    return {"phrase": value}
+    random_number = random.randrange(361)
+    # value = faker.text()
+    # return {"phrase": value}
+    return {"number": random_number}
